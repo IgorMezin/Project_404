@@ -1,11 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+using KonohagoWebApp.Helpers;
+using KonohagoWebApp.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
 namespace KonohagoWebApp.Pages
 {
     public class IndexModel : PageModel
@@ -19,7 +21,15 @@ namespace KonohagoWebApp.Pages
 
         public void OnGet()
         {
-
+            if (HttpContext.Session.GetString("role") == "Guest")
+            {
+                ViewData["name"] = "Guest";
+            }
+            else if (HttpContext.Session.GetString("role") == "User")
+            {
+                var user = HttpContext.Session.Get<User>("Current_user");
+                ViewData["name"] = user.Nickname;
+            }
         }
     }
 }

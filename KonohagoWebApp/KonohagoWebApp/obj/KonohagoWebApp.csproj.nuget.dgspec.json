@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Workstation\\source\\repos\\KonohagoWebApp\\KonohagoWebApp\\KonohagoWebApp.csproj": {}
+    "C:\\Users\\Workstation\\Desktop\\WebProject\\Project_404\\KonohagoWebApp\\KonohagoWebApp\\KonohagoWebApp.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Workstation\\source\\repos\\KonohagoWebApp\\KonohagoWebApp\\KonohagoWebApp.csproj": {
+    "C:\\Users\\Workstation\\Desktop\\WebProject\\Project_404\\KonohagoWebApp\\KonohagoWebApp\\KonohagoWebApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Workstation\\source\\repos\\KonohagoWebApp\\KonohagoWebApp\\KonohagoWebApp.csproj",
+        "projectUniqueName": "C:\\Users\\Workstation\\Desktop\\WebProject\\Project_404\\KonohagoWebApp\\KonohagoWebApp\\KonohagoWebApp.csproj",
         "projectName": "KonohagoWebApp",
-        "projectPath": "C:\\Users\\Workstation\\source\\repos\\KonohagoWebApp\\KonohagoWebApp\\KonohagoWebApp.csproj",
+        "projectPath": "C:\\Users\\Workstation\\Desktop\\WebProject\\Project_404\\KonohagoWebApp\\KonohagoWebApp\\KonohagoWebApp.csproj",
         "packagesPath": "C:\\Users\\Workstation\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Workstation\\source\\repos\\KonohagoWebApp\\KonohagoWebApp\\obj\\",
+        "outputPath": "C:\\Users\\Workstation\\Desktop\\WebProject\\Project_404\\KonohagoWebApp\\KonohagoWebApp\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -42,6 +42,12 @@
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Npgsql": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",

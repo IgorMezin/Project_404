@@ -1,0 +1,92 @@
+
+header.header-main-area {
+    background: #1a1919;
+}
+
+.carousel-inner img {
+    height: 600px;
+}
+
+.about-padding {
+    padding: 80px 0;
+}
+
+.about-left img {
+    border-radius: 50px 0;
+}
+
+a.about-right-btn {
+    display: inline-block;
+    background: black;
+    padding: 7px 25px;
+    font-weight: 700;
+    font-size: 18px;
+    border-radius: 5px;
+    color: #fff;
+    text-decoration: none;
+}
+.all-title {
+    text-align: center;
+    margin-bottom: 70px;
+}
+
+.all-title h2 {
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+}
+
+.all-title h2:after {
+    content: "";
+    position: absolute;
+    width: 40%;
+    height: 3px;
+    left: 30%;
+    background: black;
+    bottom: -4px;
+}
+
+.service-padding {
+    padding: 70px 0;
+}
+
+.wide_navbar {
+    width: 170px;
+}
+
+.service-item img {
+    border-radius: 25px 0;
+    margin-bottom: 20px;
+}
+.out-services img
+{
+    margin-left: 65px;
+}
+p
+{
+    text-align: center;
+}
+h4
+{
+    text-align: center;
+}
+li a1 {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 10px 19px;
+    text-decoration: none;
+}
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 10px 16px;
+    text-decoration: none;
+}
+#btn_support{
+    position: center;
+}
+.olesya-kal{
+    text-align: left;
+}

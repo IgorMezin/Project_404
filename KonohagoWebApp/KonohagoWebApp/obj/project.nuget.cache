@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "MHD4G3WIrXw6aQQwNfHXL7feam91+W9lOhczNShVvMKlkxKCxWU2ryq3FH8Y9/70dJml4X3BCFMLJhoSu6onzA==",
+  "dgSpecHash": "gW3nkrzvZz4qaWKu9WgmTxOaaCSg+r5XVQjyMRnyq9WhKnp5lB8BJFfNJDV+JZMqbMWUtyMY/Ozpx4o4sd6zUQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Workstation\\source\\repos\\KonohagoWebApp\\KonohagoWebApp\\KonohagoWebApp.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\Workstation\\Desktop\\WebProject\\Project_404\\KonohagoWebApp\\KonohagoWebApp\\KonohagoWebApp.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Workstation\\.nuget\\packages\\npgsql\\5.0.0\\npgsql.5.0.0.nupkg.sha512",
+    "C:\\Users\\Workstation\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\4.6.0\\system.runtime.compilerservices.unsafe.4.6.0.nupkg.sha512"
+  ],
   "logs": []
 }

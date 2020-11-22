@@ -21,6 +21,6 @@ namespace KonohagoWebApp
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                });//k
+                });
     }
 }

@@ -1,0 +1,24 @@
+﻿@page
+@model KonohagoWebApp.Pages.RegistrationModel
+@{
+    ViewData["Title"] = "Registration";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+    <div>
+        <form method="post">
+            <input type="text" asp-for="User.Name" placeholder="Name">
+            <input type="text" asp-for="User.Surname" placeholder="Surname">
+            <input type="text" asp-for="User.Nickname" placeholder="Nickname">
+            <input type="email" asp-for="User.Email" placeholder="Email">
+            <input type="password" asp-for="Password" placeholder="password">
+            <button type="submit">Sign In</button>
+        </form>
+    </div>
+</body>
+</html>
