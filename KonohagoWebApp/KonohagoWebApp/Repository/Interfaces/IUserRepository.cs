@@ -11,5 +11,7 @@ namespace KonohagoWebApp.Repository.Interfaces
     {
         Task<User> GetUserByEmailAndPasswordAsync(string email, string password);
         Task AddUser(User user, string password);
+
+        bool CheckUser(string email, string nickname);
     }
 }

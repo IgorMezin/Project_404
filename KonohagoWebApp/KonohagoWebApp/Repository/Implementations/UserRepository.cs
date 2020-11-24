@@ -13,7 +13,7 @@ namespace KonohagoWebApp.Repository.Implementations
         private string connection = "Host=localhost; " +
             "Username=postgres; " +
             "Password=Werrew123@; " +
-            "Database=Konohago";
+            "Database=KonohagoDB";
         public async Task<User> GetUserByEmailAndPasswordAsync(string email, string password)
         {
             await using (var connection = new NpgsqlConnection(this.connection))
@@ -53,24 +53,56 @@ namespace KonohagoWebApp.Repository.Implementations
                 return user;
             }
         }
-        
         public async Task AddUser(User user, string password)
         {
-            using (var connection = new NpgsqlConnection(this.connection))
+                using (var connection = new NpgsqlConnection(this.connection))
             {                
                 await connection.OpenAsync();
-                using (var command = connection.CreateCommand())
-                {
-                    command.CommandText = "insert into users (name,surname, nickname, mail, password, role)" +
-                                          "values(@name, @surname, @nickname, @mail, crypt(@password, gen_salt('bf')), @role);";
-                    command.Parameters.AddWithValue("email",NpgsqlDbType.Varchar, user.Email);
-                    command.Parameters.AddWithValue("password", NpgsqlDbType.Varchar, password);
-                    command.Parameters.AddWithValue("nickname", NpgsqlDbType.Varchar, user.Nickname);
-                    command.Parameters.AddWithValue("name", NpgsqlDbType.Varchar, user.Name);
-                    command.Parameters.AddWithValue("surname", NpgsqlDbType.Varchar, user.Surname);
-                    command.Parameters.AddWithValue("role", NpgsqlDbType.Varchar, user.Role.ToString());
-                    await command.ExecuteScalarAsync();
 
+                using (var cmd = connection.CreateCommand())
+                {
+                    cmd.CommandText= "insert into users (name,surname, nickname, password, mail, role) " +
+                        "values(@name, @surname, @nickname, crypt(@password, gen_salt('bf')), @mail, @role);";
+                    cmd.Parameters.AddWithValue("@name", user.Name);
+                    cmd.Parameters.AddWithValue("@surname", user.Surname);
+                    cmd.Parameters.AddWithValue("@nickname", user.Nickname);
+                    cmd.Parameters.AddWithValue("@password", password);
+                    cmd.Parameters.AddWithValue("@mail", user.Email);
+                    cmd.Parameters.AddWithValue("@role", user.Role.ToString());
+                    await cmd.ExecuteScalarAsync();      
+                }
+            }
+        }
+
+        public bool CheckUser(string email, string nickname)
+        {
+            using (var connection = new NpgsqlConnection(this.connection))
+            {
+                connection.Open();
+                using (var cmd = connection.CreateCommand())
+                {
+                    cmd.Parameters.AddWithValue("@email", email);
+                    cmd.Parameters.AddWithValue("@nickname", nickname);
+                    cmd.CommandText = "select * from users where mail=@email or nickname=@nickname;";
+                    
+                    using (var reader = cmd.ExecuteReader())
+                    {
+                        string nick;
+                        string mail;
+                        while (reader.Read())
+                        {
+                            nick = reader.GetString(reader.GetOrdinal("nickname"));
+                            mail = reader.GetString(reader.GetOrdinal("mail"));
+                            if (nick != null || mail != null)
+                            {
+                                return true;
+                                 //найден пользователь 
+                            }
+                            break;
+                        }
+                        return false;
+                        //пользователь не найден
+                    }
                 }
             }
         }

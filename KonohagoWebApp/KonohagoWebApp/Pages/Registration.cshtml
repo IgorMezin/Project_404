@@ -1,7 +1,9 @@
 ﻿@page
+
 @model KonohagoWebApp.Pages.RegistrationModel
 @{
     ViewData["Title"] = "Registration";
+    var except = ViewData["Message"];
 }
 <!DOCTYPE html>
 
@@ -10,6 +12,7 @@
     <title></title>
 </head>
 <body>
+    <h5>Регистрация</h5>
     <div>
         <form method="post">
             <input type="text" asp-for="User.Name" placeholder="Name">
@@ -17,7 +20,16 @@
             <input type="text" asp-for="User.Nickname" placeholder="Nickname">
             <input type="email" asp-for="User.Email" placeholder="Email">
             <input type="password" asp-for="Password" placeholder="password">
-            <button type="submit">Sign In</button>
+            <button type="submit">Вход</button>
+        </form>
+        <div style="color:red"><p>ошибки будут? @except</p></div>
+    </div>
+    <h5>Вход</h5>
+    <div>
+        <form method="post">
+            @*<input type="email" asp-for="Email" placeholder="Email">
+            <input type="password" asp-for="Password" placeholder="password">
+            <button type="submit">Вход</button>*@
         </form>
     </div>
 </body>

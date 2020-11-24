@@ -59,6 +59,7 @@ namespace KonohagoWebApp
             app.Use(async (context, next) =>
             {
                 var a = context.Session.GetString("role");
+                var b = context.Session.GetString("exception");
                 if (!context.Session.Keys.Contains("role"))
                 {
                     context.Session.SetString("role", Roles.Guest.ToString());
