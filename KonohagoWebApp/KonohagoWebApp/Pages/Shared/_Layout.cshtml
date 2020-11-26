@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNetCore.Http
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -6,7 +7,7 @@
     <title>@ViewData["Title"] - KonohagoWebApp</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/mainPageWithProfile.css" />
-    @await Html.PartialAsync("_ForeignStyle"); 
+    @await Html.PartialAsync("_ForeignStyle");
 </head>
 <body>
     <header class="header-main-area">
@@ -26,17 +27,24 @@
                             <li class="wide_navbar nav-item">
                                 <a class="nav-link" asp-area="" asp-page="/Error">Каталог аниме</a>
                             </li>
-                            <li class="wide_navbar nav-item">
-                                <a class="nav-link" asp-area="" asp-page="/Registration">Регистрация</a>
+                            @if (Context.Session.GetString("role") == "Quest")
+                            {
+                                <li class="wide_navbar nav-item">
+                                    <a class="nav-link" asp-area="" asp-page="/Registration">Регистрация</a>
+                                </li>
+                            }
                             <li class="wide_navbar nav-item">
                                 <a class="nav-link" asp-area="" asp-page="/Error">FAQ</a>
                             </li>
                             <li class="wide_navbar nav-item">
                                 <a class="nav-link" asp-area="" asp-page="/Error">Поиск</a>
                             </li>
-                            <li class="wide_navbar nav-item">
-                                <a class="nav-link" asp-area="" asp-page="/Exit">Выход</a>
-                            </li>
+                            @if (Context.Session.GetString("role") == "User")
+                            {
+                                <li class="wide_navbar nav-item">
+                                    <a class="nav-link" asp-area="" asp-page="/Error">Выход</a>
+                                </li>
+                            }
                         </ul>
                     </div>
                 </nav>

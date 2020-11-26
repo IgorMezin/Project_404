@@ -63,7 +63,7 @@ namespace KonohagoWebApp
                 if (!context.Session.Keys.Contains("role"))
                 {
                     context.Session.SetString("role", Roles.Guest.ToString());
-                }
+                }             
                 a = context.Session.GetString("role");
 
                 await next.Invoke();

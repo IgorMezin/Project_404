@@ -14,7 +14,7 @@
 <body>
     <h5>Регистрация</h5>
     <div>
-        <form method="post">
+        <form method="post" asp-page-handler="RegistrationForm">
             <input type="text" asp-for="User.Name" placeholder="Name">
             <input type="text" asp-for="User.Surname" placeholder="Surname">
             <input type="text" asp-for="User.Nickname" placeholder="Nickname">
@@ -22,14 +22,14 @@
             <input type="password" asp-for="Password" placeholder="password">
             <button type="submit">Вход</button>
         </form>
-        <div style="color:red"><p>ошибки будут? @except</p></div>
+        <div style="color:red"><p>@except</p></div>
     </div>
     <h5>Вход</h5>
     <div>
-        <form method="post">
-            @*<input type="email" asp-for="Email" placeholder="Email">
+        <form method="post" asp-page-handler="AuthorizationForm">
+            <input type="email" asp-for="Email" placeholder="Email">
             <input type="password" asp-for="Password" placeholder="password">
-            <button type="submit">Вход</button>*@
+            <button type="submit">Вход</button>
         </form>
     </div>
 </body>
