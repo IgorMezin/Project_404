@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - KonohagoWebApp</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/mainPageWithProfile.css" />
-    @await Html.PartialAsync("_ForeignStyle");
+    <link rel="stylesheet" href="~/css/mainPage.css" type="text/css"/>
+    @await Html.PartialAsync("_ForeignStyle")
 </head>
 <body>
     <header class="header-main-area">
@@ -27,22 +27,35 @@
                             <li class="wide_navbar nav-item">
                                 <a class="nav-link" asp-area="" asp-page="/Error">Каталог аниме</a>
                             </li>
-                            @if (Context.Session.GetString("role") == "Quest")
+                            <li class="wide_navbar nav-item">
+                                <a class="nav-link" asp-area="" asp-page="/FAQ">FAQ</a>
+                            </li>
+                            <li class="wide_navbar nav-item">
+                                <a class="nav-link" asp-area="" asp-page="/Search">Поиск</a>
+                            </li>
+                            @if (Context.Session.GetString("role") == "Guest")
                             {
                                 <li class="wide_navbar nav-item">
                                     <a class="nav-link" asp-area="" asp-page="/Registration">Регистрация</a>
                                 </li>
                             }
-                            <li class="wide_navbar nav-item">
-                                <a class="nav-link" asp-area="" asp-page="/Error">FAQ</a>
-                            </li>
-                            <li class="wide_navbar nav-item">
-                                <a class="nav-link" asp-area="" asp-page="/Error">Поиск</a>
-                            </li>
                             @if (Context.Session.GetString("role") == "User")
                             {
                                 <li class="wide_navbar nav-item">
                                     <a class="nav-link" asp-area="" asp-page="/Error">Выход</a>
+                                </li>
+                            }
+                            @if (Context.Session.GetString("role") == "User")
+                            {
+                                <li class="wide_navbar nav-item">
+                                    <a class="nav-link" asp-area="" asp-page="/Profile">Мой профиль</a>
+                                </li>
+                            }
+
+                            @if (Context.Session.GetString("role") == "Guest")
+                            {
+                                <li class="wide_navbar nav-item">
+                                    <a class="nav-link" asp-area="" asp-page="/TitlePage">Страница тайтла</a>
                                 </li>
                             }
                         </ul>
@@ -57,16 +70,32 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2020 - KonohagoWebApp - <a asp-area="" asp-page="/Privacy">Privacy</a>
+    <section class="about-area">
+        <div class="about-padding">
+            <div class="container">
+                <div class="about-title all-title">
+                    <h2>О нас</h2>
+                </div>
+                <div class="row">
+                    <div class="col-sm-5">
+                        <div class="about-left">
+                            <img class="img-fluid" src="/img/alesya_kal.png" alt="">
+                        </div>
+                    </div>
+                    <div class="col-sm-7">
+                        <div class="about-right-content">
+                            <h3></h3>
+                            <p class="olesya-kal">Группа молодых разработчиков, которые готовы идти вперед, не останавливаясь в развитии. Мы разрабатываем приложения, которыми можем гордиться </p>
+                            <a asp-page="/DonatePage" id="btn_support" class="about-right-btn">Поддержать нас</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </footer>
+    </section>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-
     @RenderSection("Scripts", required: false)
 </body>
 </html>

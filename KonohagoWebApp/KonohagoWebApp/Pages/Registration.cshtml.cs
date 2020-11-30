@@ -17,14 +17,19 @@ namespace KonohagoWebApp.Pages
         [BindProperty]
         public string Email { get; set; }
 
-        public void OnGet()
+        public IActionResult OnGet()
         {
-            
+            if(HttpContext.Session.GetString("role")=="User")
+            {
+                return Redirect("/Index");
+            }
             if(HttpContext.Session.GetString("exception")== "пользователь с таким никнеймом или почтой уже существует!")
             {
                 ViewData["message"] = "пользователь с таким никнеймом или почтой уже существует!";
                 HttpContext.Session.SetString("exception", "");
-            }   
+                return null;
+            }
+            return null;
         }
         public IActionResult OnPostRegistrationForm()
         {

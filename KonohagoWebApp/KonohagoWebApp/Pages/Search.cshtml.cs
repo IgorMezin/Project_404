@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace KonohagoWebApp.Pages
 {
-    public class ExitModel : PageModel
+    public class SearchModel : PageModel
     {
         public void OnGet()
         {

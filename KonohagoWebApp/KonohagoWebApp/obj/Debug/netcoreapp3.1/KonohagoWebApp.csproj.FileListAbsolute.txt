@@ -22,8 +22,6 @@ C:\Users\Workstation\Desktop\WebProject\Project_404\KonohagoWebApp\KonohagoWebAp
 C:\Users\Workstation\Desktop\WebProject\Project_404\KonohagoWebApp\KonohagoWebApp\obj\Debug\netcoreapp3.1\KonohagoWebApp.TagHelpers.output.cache
 C:\Users\Workstation\Desktop\WebProject\Project_404\KonohagoWebApp\KonohagoWebApp\obj\Debug\netcoreapp3.1\KonohagoWebApp.RazorCoreGenerate.cache
 C:\Users\Workstation\Desktop\WebProject\Project_404\KonohagoWebApp\KonohagoWebApp\obj\Debug\netcoreapp3.1\Razor\Pages\Error.cshtml.g.cs
-C:\Users\Workstation\Desktop\WebProject\Project_404\KonohagoWebApp\KonohagoWebApp\obj\Debug\netcoreapp3.1\Razor\Pages\Index.cshtml.g.cs
-C:\Users\Workstation\Desktop\WebProject\Project_404\KonohagoWebApp\KonohagoWebApp\obj\Debug\netcoreapp3.1\Razor\Pages\Privacy.cshtml.g.cs
 C:\Users\Workstation\Desktop\WebProject\Project_404\KonohagoWebApp\KonohagoWebApp\obj\Debug\netcoreapp3.1\Razor\Pages\Shared\_Layout.cshtml.g.cs
 C:\Users\Workstation\Desktop\WebProject\Project_404\KonohagoWebApp\KonohagoWebApp\obj\Debug\netcoreapp3.1\Razor\Pages\Shared\_ValidationScriptsPartial.cshtml.g.cs
 C:\Users\Workstation\Desktop\WebProject\Project_404\KonohagoWebApp\KonohagoWebApp\obj\Debug\netcoreapp3.1\Razor\Pages\_ViewImports.cshtml.g.cs
@@ -36,7 +34,11 @@ C:\Users\Workstation\Desktop\WebProject\Project_404\KonohagoWebApp\KonohagoWebAp
 C:\Users\Workstation\Desktop\WebProject\Project_404\KonohagoWebApp\KonohagoWebApp\obj\Debug\netcoreapp3.1\KonohagoWebApp.genruntimeconfig.cache
 C:\Users\Workstation\Desktop\WebProject\Project_404\KonohagoWebApp\KonohagoWebApp\obj\Debug\netcoreapp3.1\KonohagoWebApp.csproj.CopyComplete
 C:\Users\Workstation\Desktop\WebProject\Project_404\KonohagoWebApp\KonohagoWebApp\obj\Debug\netcoreapp3.1\Razor\Pages\Shared\_ForeignStyle.cshtml.g.cs
-C:\Users\Workstation\Desktop\WebProject\Project_404\KonohagoWebApp\KonohagoWebApp\obj\Debug\netcoreapp3.1\Razor\Pages\Exit.cshtml.g.cs
 C:\Users\Workstation\Desktop\WebProject\Project_404\KonohagoWebApp\KonohagoWebApp\bin\Debug\netcoreapp3.1\Npgsql.dll
 C:\Users\Workstation\Desktop\WebProject\Project_404\KonohagoWebApp\KonohagoWebApp\obj\Debug\netcoreapp3.1\Razor\Pages\Registration.cshtml.g.cs
-C:\Users\Workstation\Desktop\WebProject\Project_404\KonohagoWebApp\KonohagoWebApp\obj\Debug\netcoreapp3.1\Razor\Pages\Shared\_UserContent.cshtml.g.cs
+C:\Users\Workstation\Desktop\WebProject\Project_404\KonohagoWebApp\KonohagoWebApp\obj\Debug\netcoreapp3.1\Razor\Pages\Index.cshtml.g.cs
+C:\Users\Workstation\Desktop\WebProject\Project_404\KonohagoWebApp\KonohagoWebApp\obj\Debug\netcoreapp3.1\Razor\Pages\DonatePage.cshtml.g.cs
+C:\Users\Workstation\Desktop\WebProject\Project_404\KonohagoWebApp\KonohagoWebApp\obj\Debug\netcoreapp3.1\Razor\Pages\FAQ.cshtml.g.cs
+C:\Users\Workstation\Desktop\WebProject\Project_404\KonohagoWebApp\KonohagoWebApp\obj\Debug\netcoreapp3.1\Razor\Pages\Profile.cshtml.g.cs
+C:\Users\Workstation\Desktop\WebProject\Project_404\KonohagoWebApp\KonohagoWebApp\obj\Debug\netcoreapp3.1\Razor\Pages\Search.cshtml.g.cs
+C:\Users\Workstation\Desktop\WebProject\Project_404\KonohagoWebApp\KonohagoWebApp\obj\Debug\netcoreapp3.1\Razor\Pages\TitlePage.cshtml.g.cs

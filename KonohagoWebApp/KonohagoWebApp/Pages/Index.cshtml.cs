@@ -34,7 +34,7 @@ namespace KonohagoWebApp.Pages
             }
             if (HttpContext.Session.GetString("role") == "Guest")
             {
-                ViewData["name"] = "Guest";
+                ViewData["name"] = "Путник";
                 ViewData["role"] = "Guest";
             }
             else if (HttpContext.Session.GetString("role") == "User")

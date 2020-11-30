@@ -1,0 +1,307 @@
+@import url('https://fonts.googleapis.com/css?family=Caveat');
+@import url('https://fonts.googleapis.com/css?family=Comfortaa');
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/css?family=Crimson+Text');
+
+
+header.header-main-area {
+    background: #1a1919;
+}
+
+.carousel-inner img {
+    height: 600px;
+}
+
+.about-padding {
+    padding: 80px 0;
+}
+
+.about-left img {
+    border-radius: 50px 0;
+}
+
+a.about-right-btn {
+    display: inline-block;
+    background: black;
+    padding: 7px 25px;
+    font-weight: 700;
+    font-size: 18px;
+    border-radius: 5px;
+    color: #fff;
+    text-decoration: none;
+}
+.all-title {
+    text-align: center;
+    margin-bottom: 70px;
+}
+
+.all-title h2 {
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+}
+
+.all-title h2:after {
+    content: "";
+    position: absolute;
+    width: 40%;
+    height: 3px;
+    left: 30%;
+    background: black;
+    bottom: -4px;
+}
+
+.service-padding {
+    padding: 70px 0;
+}
+
+.wide_navbar {
+    width: 170px;
+}
+
+.service-item img {
+    border-radius: 25px 0;
+    margin-bottom: 20px;
+}
+.out-services img
+{
+    margin-left: 65px;
+}
+p
+{
+    text-align: center;
+}
+h4
+{
+    text-align: center;
+}
+li a1 {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 10px 19px;
+    text-decoration: none;
+}
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 10px 16px;
+    text-decoration: none;
+}
+#btn_support{
+    position: center;
+}
+
+
+.star-rating{
+    font-size: 0;
+}
+.star-rating__wrap{
+    display: inline-block;
+    font-size: 1rem;
+}
+.star-rating__wrap:after{
+    content: "";
+    display: table;
+    clear: both;
+}
+.star-rating__ico{
+    float: right;
+    padding-left: 2px;
+    cursor: pointer;
+    color: #FFB300;
+}
+.star-rating__ico:last-child{
+    padding-left: 0;
+}
+.star-rating__input{
+    display: none;
+}
+.star-rating__ico:hover:before,
+.star-rating__ico:hover ~ .star-rating__ico:before,
+.star-rating__input:checked ~ .star-rating__ico:before
+{
+    content: "\f005";
+}
+
+body {
+    text-align: center;
+}
+
+
+html {
+    background: #ffffff;
+}
+
+header {
+    text-align: center;
+}
+
+h1, h2 {
+    font-family: Comfortaa, sans-serif;
+    font-size: 3.4em;
+}
+
+header p {
+    font-size: 1.6em;
+    font-family: Caveat, sans-serif;
+}
+
+h2 {
+    font-size: 1.4em;
+    font-weight: bold;
+}
+
+article, blockquote, footer p{
+    margin: 0 auto;
+    max-width: 560px;
+}
+
+
+/*
+--------------------------
+Picture and caption style
+--------------------------
+*/
+#img-div {
+    background: hsla(0,0%,100%,0.5);
+    padding: 2em 2em 0;
+}
+
+#img-div img {
+    margin: 0 auto;
+    display: block;
+    width: 40%;
+    border-radius: 4px;
+}
+
+figcaption {
+    padding-right: 2px;
+    font-size: 0.8em;
+    text-align: right;
+    line-height: 2rem;
+    color: #444;
+}
+
+
+/*
+--------------------------
+article style
+--------------------------
+*/
+
+article {
+    margin-top: 2em;
+}
+
+
+blockquote {
+    width: 360px;
+    width: -moz-fit-content;
+    width: -webkit-fit-content;
+    width: fit-content;
+    padding: 2em;
+    margin-bottom: 1em;
+}
+
+blockquote p{
+
+    margin: 0;
+    font-family: Crimson Text, Serif;
+    font-size: 1.4em;
+    color: #555;
+}
+
+blockquote p:first-child {
+    position: relative;
+}
+
+blockquote p:first-child::before {
+    position: absolute;
+    right: calc(100% + 0.05em);
+    bottom: -0.5em;
+    font-family: Georgia, serif;
+    font-size: 6rem;
+    content: "\201C";
+    color: #888;
+    background:white ;
+}
+
+blockquote cite {
+    display: block;
+    position: relative;
+    margin-top: 0.5em;
+    text-align: right;
+    font-style: normal;
+    font-size: 0.9em;
+    color: #555;
+}
+
+blockquote cite::after {
+    position: absolute;
+    left: calc(100% + 0.03em);
+    top: -0.06em;
+    font-family: Georgia, serif;
+    font-size: 6rem;
+    content: "\201D";
+    color: #888;
+
+}
+
+cite::before {
+    content: "– ";
+}
+
+footer {
+    background: #ffffff;
+    color: white;
+    padding: 1.5em 1em 1.6em;
+    font-size: 0.9em;
+    border-radius: 4px;
+}
+
+footer a,
+footer a:hover,
+footer a:active{
+    color: inherit;
+    text-decoration: underline dotted;
+}
+
+
+
+
+
+@media (max-width: 860px) {
+    body {
+        margin: 0;
+
+    }
+
+    #img-div {
+        padding: .5em .5em 0;
+    }
+
+
+}
+
+@media (max-width: 520px) {
+    body {
+        padding-bottom: 0;
+    }
+
+    h1 {
+        font-size: 2.6em;
+    }
+
+    header p {
+        font-size: 1.4em;
+    }
+
+    footer {
+        margin-left: -1rem;
+        margin-right: -1rem;
+        border-radius: 0;
+    }
+}
+

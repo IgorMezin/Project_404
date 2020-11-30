@@ -1,0 +1,179 @@
+
+
+.main {
+    width: 100%;
+    margin: 1px auto;
+}
+
+.has-search .form-control {
+    padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+    position: absolute;
+    z-index: 2;
+    display: block;
+    width: 2.375rem;
+    height: 2.375rem;
+    line-height: 2.375rem;
+    text-align: center;
+    pointer-events: none;
+    color: #db2d2d;
+}
+
+header.header-main-area {
+    background: #000000;
+}
+
+.carousel-inner img {
+    height: 600px;
+}
+
+.about-padding {
+    padding: 80px 0;
+}
+
+.about-left img {
+    border-radius: 50px 0;
+}
+
+a.about-right-btn {
+    display: inline-block;
+    background: black;
+    padding: 7px 25px;
+    font-weight: 700;
+    font-size: 18px;
+    border-radius: 5px;
+    color: #d93e3e;
+    text-decoration: none;
+}
+.all-title {
+    text-align: center;
+    margin-bottom: 70px;
+}
+
+.all-title h2 {
+    text-transform: uppercase;
+    position: relative;
+    display: inline-block;
+}
+
+.all-title h2:after {
+    content: "";
+    position: absolute;
+    width: 40%;
+    height: 3px;
+    left: 30%;
+    background: black;
+    bottom: -4px;
+}
+
+.service-padding {
+    padding: 70px 0;
+}
+
+.wide_navbar {
+    width: 170px;
+}
+
+.service-item img {
+    border-radius: 25px 0;
+    margin-bottom: 20px;
+}
+.out-services img
+{
+    margin-left: 65px;
+}
+p
+{
+    text-align: center;
+}
+h4
+{
+    text-align: center;
+}
+li a1 {
+    display: block;
+    color: #c81414;
+    text-align: center;
+    padding: 10px 19px;
+    text-decoration: none;
+}
+li a {
+    display: block;
+    color: #e00b0b;
+    text-align: center;
+    padding: 10px 16px;
+    text-decoration: none;
+}
+#btn_support{
+    position: center;
+}
+
+
+body {
+    padding: 0;
+    margin: 0;
+    height: 100vh;
+    width: 100%;
+    background: #07051a;
+}
+
+form{
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    transition: all 1s;
+    width: 50px;
+    height: 50px;
+    background: #fdfdfd;
+    box-sizing: border-box;
+    border-radius: 25px;
+    border: 4px solid #ba1010;
+    padding: 5px;
+}
+
+input{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;;
+    height: 42.5px;
+    line-height: 30px;
+    outline: 0;
+    border: 0;
+    display: none;
+    font-size: 1em;
+    border-radius: 20px;
+    padding: 0 20px;
+}
+
+.fa{
+    box-sizing: border-box;
+    padding: 10px;
+    width: 42.5px;
+    height: 42.5px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 50%;
+    color: #07051a;
+    text-align: center;
+    font-size: 1.2em;
+    transition: all 1s;
+}
+
+form:hover{
+    width: 200px;
+    cursor: pointer;
+}
+
+form:hover input{
+    display: block;
+}
+
+form:hover .fa{
+    background: #07051a;
+    color: white;
+}
