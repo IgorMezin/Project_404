@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Threading.Tasks;
 using KonohagoWebApp.Models;
 using KonohagoWebApp.Repository.Interfaces;
@@ -27,9 +28,20 @@ namespace KonohagoWebApp.Repository.Implementations
                     {
                         while (reader.Read())
                         {
+                            user.Id = reader.GetInt32(reader.GetOrdinal("user_id"));
                             user.Nickname = reader.GetString(reader.GetOrdinal("nickname"));
                             user.Email = reader.GetString(reader.GetOrdinal("mail"));
                             string role = reader.GetString(reader.GetOrdinal("role"));
+                            var t = reader.IsDBNullAsync("avatar");
+
+                            if (!(await t))
+                            {
+                                user.ImagePath = reader.GetString(reader.GetOrdinal("avatar"));
+                            }
+                            else
+                            {
+                                user.ImagePath = "/img/noavatar.png";
+                            }
                             switch (role)
                             {
                                 case ("Admin"):
@@ -103,12 +115,37 @@ namespace KonohagoWebApp.Repository.Implementations
                 }
             }
         }
+        public async Task<User> GetUserById(int id)
+        {
+            User user = new User();
+            await using (var connection = new NpgsqlConnection(this.connection))
+            {
+                await connection.OpenAsync();
+                using (var cmd = connection.CreateCommand())
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.CommandText = "select * from users where user_id = @id";
 
-        //public static void SetAuthCookie(this HttpResponse responseBase, string email, string password)
-        //{
-        //    responseBase.Cookies.Append("email", email);
-        //    responseBase.Cookies.Append("password", password);
-        //}
+                    using (var rdr = cmd.ExecuteReader())
+                    {
+                        while (rdr.Read())
+                        {
+                            var t = rdr.IsDBNullAsync("avatar");
+                            user.Id = rdr.GetInt32(rdr.GetOrdinal("user_id"));
+                            if(!(await t))
+                            {
+                                user.ImagePath = rdr.GetString(rdr.GetOrdinal("avatar"));
+                            }
+                            else
+                            {
+                                user.ImagePath = "/img/noavatar.png";
+                            }
+                        }
+                    }
+                }
+            }
+            return user;
+        }
     }
 }
 

@@ -67,11 +67,12 @@
                         </div>
                         <div class="input-block">
                             <label for="signup-password-confirm">Повторите пароль</label>
-                            <input id="signup-password-confirm" type="password" required>
+                            <input id="signup-password-confirm" type="password" asp-for="ConfirmPassword" required>
                         </div>
                     </fieldset>
-                    <button type="submit" class="btn-login">Далее</button>
+                    <button  type="submit" class="btn-login">Регистрация</button>
                 </form>
+                <div style="color:red">@ViewData["message"]</div>
             </div>
         </div>
     </section>

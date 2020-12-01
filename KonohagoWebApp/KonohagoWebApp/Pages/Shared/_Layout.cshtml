@@ -42,7 +42,9 @@
                             @if (Context.Session.GetString("role") == "User")
                             {
                                 <li class="wide_navbar nav-item">
-                                    <a class="nav-link" asp-area="" asp-page="/Error">Выход</a>
+                                    <form method="post">
+                                        <button class="nav-link" asp-page="Index" asp-page-handler="ClearSession" >Выход</button>
+                                    </form>
                                 </li>
                             }
                             @if (Context.Session.GetString("role") == "User")

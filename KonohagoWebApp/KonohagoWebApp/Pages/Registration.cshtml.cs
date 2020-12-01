@@ -15,6 +15,8 @@ namespace KonohagoWebApp.Pages
         [BindProperty]
         public string Password { get; set; }
         [BindProperty]
+        public string ConfirmPassword { get; set; }
+        [BindProperty]
         public string Email { get; set; }
 
         public IActionResult OnGet()
@@ -23,9 +25,9 @@ namespace KonohagoWebApp.Pages
             {
                 return Redirect("/Index");
             }
-            if(HttpContext.Session.GetString("exception")== "пользователь с таким никнеймом или почтой уже существует!")
+            if(HttpContext.Session.GetString("exception")!= "")
             {
-                ViewData["message"] = "пользователь с таким никнеймом или почтой уже существует!";
+                ViewData["message"] = HttpContext.Session.GetString("exception");
                 HttpContext.Session.SetString("exception", "");
                 return null;
             }
@@ -35,6 +37,12 @@ namespace KonohagoWebApp.Pages
         {
             var repository = HttpContext.RequestServices.GetService<IUserRepository>();
             bool f = repository.CheckUser(User.Email, User.Nickname);
+            if (ConfirmPassword != Password)
+            {
+                HttpContext.Session.SetString("exception", "пароли не совпадают");
+                OnGet();
+                return null;
+            }
             if (f == true)
             {
                 HttpContext.Session.SetString("exception", "пользователь с таким никнеймом или почтой уже существует!");

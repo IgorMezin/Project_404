@@ -44,5 +44,16 @@ namespace KonohagoWebApp.Pages
                 ViewData["role"] = "User";
             }
         }
+        public IActionResult OnPostClearSession()
+        {
+            HttpContext.Session.Clear();
+            if (HttpContext.Request.Cookies["email"] != null || HttpContext.Request.Cookies["password"]!= null)
+            {
+                HttpContext.Response.Cookies.Delete("email");
+                HttpContext.Response.Cookies.Delete("password");
+            }
+
+            return Redirect("/Index");
+        }
     }
 }

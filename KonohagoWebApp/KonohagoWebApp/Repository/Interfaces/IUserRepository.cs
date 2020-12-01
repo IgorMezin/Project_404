@@ -13,5 +13,8 @@ namespace KonohagoWebApp.Repository.Interfaces
         Task AddUser(User user, string password);
 
         bool CheckUser(string email, string nickname);
+
+        Task<User> GetUserById(int id);
+        Task UpdateUserAsync(User user, int id, string password);
     }
 }
