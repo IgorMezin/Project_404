@@ -172,6 +172,7 @@ namespace KonohagoWebApp.Repository.Implementations
             }
             
         }
+
     }
 }
 
