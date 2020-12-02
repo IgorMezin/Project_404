@@ -131,6 +131,8 @@ namespace KonohagoWebApp.Repository.Implementations
                         while (rdr.Read())
                         {
                             var t = rdr.IsDBNullAsync("avatar");
+                            user.Nickname = rdr.GetString(rdr.GetOrdinal("nickname"));
+                            user.Email = rdr.GetString(rdr.GetOrdinal("mail"));
                             user.Id = rdr.GetInt32(rdr.GetOrdinal("user_id"));
                             if(!(await t))
                             {
@@ -145,6 +147,30 @@ namespace KonohagoWebApp.Repository.Implementations
                 }
             }
             return user;
+        }
+
+        public async Task UpdateUserAsync(User user, int id, string password)
+        {
+            await using (var connection = new NpgsqlConnection(this.connection))
+            {
+                await connection.OpenAsync();
+                using (var cmd = connection.CreateCommand())
+                {
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Parameters.AddWithValue("@password", password);
+                    cmd.Parameters.AddWithValue("@name", user.Name);
+                    if (user.ImagePath == null)
+                        cmd.CommandText = "update users set name = @name, password = crypt(@password, gen_salt('bf')) where user_id = @id";
+                    else
+                    {
+                        cmd.Parameters.AddWithValue("@img", user.ImagePath);
+                        cmd.CommandText = "update users set name = @name, password = crypt(@password, gen_salt('bf')), avatar = @img where user_id = @id";
+
+                    }
+                    await cmd.ExecuteNonQueryAsync();
+                }
+            }
+            
         }
     }
 }

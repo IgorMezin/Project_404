@@ -39,17 +39,18 @@ namespace KonohagoWebApp.Pages
               //var music_task = HttpContext.RequestServices.GetService<IMusicRepo>().GetMusicOfUser(id);
                 User = await user_task;
               //Musics = await music_task;
+
             }
             else
             {
-                Redirect("Index");
+                Redirect("/Index");
             }
         }
         private async Task<string> AddAvatar()
         {
             if (Avatar != null)
             {
-                string path = "/imgà/" + Avatar.FileName;
+                string path = "/img/" + Avatar.FileName;
                 using (var fileStream = new FileStream(_appEnvironment.WebRootPath + path, FileMode.Create))
                 {
                     await Avatar.CopyToAsync(fileStream);
@@ -58,6 +59,25 @@ namespace KonohagoWebApp.Pages
                 return path;
             }
             else return null;
+        }
+        private async Task<IActionResult> OnPost()
+        {
+            var a = HttpContext.Session.Get<User>("user");
+            if(a.Id == Convert.ToInt32(HttpContext.Request.Query["id"]))
+            {
+                User user = new User();
+                user.Name = NewNickname;
+                var add_image_task = AddAvatar();
+                var olduser = HttpContext.Session.Get<User>("user");
+                var user_id = olduser.Id;
+                user.ImagePath = await add_image_task;
+                var task = HttpContext.RequestServices.GetService<IUserRepository>();
+                HttpContext.Session.Remove("user");
+                await task.UpdateUserAsync(user, user_id, user.Password);
+                HttpContext.Session.Set("user", await HttpContext.RequestServices.GetService<IUserRepository>().GetUserById(user_id));
+
+            }
+            return Redirect($"/Profile/&id={HttpContext.Request.Query["id"]}");
         }
     }
 }

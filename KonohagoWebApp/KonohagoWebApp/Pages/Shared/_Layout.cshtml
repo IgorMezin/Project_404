@@ -1,4 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Http
+@using Models
+@using KonohagoWebApp.Helpers
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - KonohagoWebApp</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/mainPage.css" type="text/css"/>
+    <link rel="stylesheet" href="~/css/mainPage.css" type="text/css" />
     @await Html.PartialAsync("_ForeignStyle")
 </head>
 <body>
@@ -43,14 +45,14 @@
                             {
                                 <li class="wide_navbar nav-item">
                                     <form method="post">
-                                        <button class="nav-link" asp-page="Index" asp-page-handler="ClearSession" >Выход</button>
+                                        <button class="nav-link" asp-page="Index" asp-page-handler="ClearSession">Выход</button>
                                     </form>
                                 </li>
                             }
                             @if (Context.Session.GetString("role") == "User")
                             {
                                 <li class="wide_navbar nav-item">
-                                    <a class="nav-link" asp-area="" asp-page="/Profile">Мой профиль</a>
+                                    <a class="nav-link" href="/Profile/?id=@(Context.Session.Get<User>("Current_user").Id)">Мой профиль</a>
                                 </li>
                             }
 
