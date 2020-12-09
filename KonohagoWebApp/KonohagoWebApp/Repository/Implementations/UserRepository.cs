@@ -64,7 +64,7 @@ namespace KonohagoWebApp.Repository.Implementations
         }
         public async Task AddUser(User user, string password)
         {
-            using (var connection = new NpgsqlConnection(this.connection))
+            await using (var connection = new NpgsqlConnection(this.connection))
             {
                 await connection.OpenAsync();
 
@@ -157,22 +157,14 @@ namespace KonohagoWebApp.Repository.Implementations
                 using (var cmd = connection.CreateCommand())
                 {
                     cmd.Parameters.AddWithValue("@id", id);
-                    cmd.Parameters.AddWithValue("@password", password);
-                    cmd.Parameters.AddWithValue("@name", user.Name);
-                    if (user.ImagePath == null)
-                        cmd.CommandText = "update users set name = @name, password = crypt(@password, gen_salt('bf')) where user_id = @id";
-                    else
-                    {
-                        cmd.Parameters.AddWithValue("@img", user.ImagePath);
-                        cmd.CommandText = "update users set name = @name, password = crypt(@password, gen_salt('bf')), avatar = @img where user_id = @id";
+                    cmd.Parameters.AddWithValue("@img", user.ImagePath);
+                    cmd.CommandText = "update users set avatar = @img where user_id = @id";
 
-                    }
                     await cmd.ExecuteNonQueryAsync();
                 }
             }
-            
-        }
 
+        }
     }
 }
 

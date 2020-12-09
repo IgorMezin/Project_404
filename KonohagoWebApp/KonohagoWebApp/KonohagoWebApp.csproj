@@ -8,8 +8,4 @@
     <PackageReference Include="Npgsql" Version="5.0.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="wwwroot\img\" />
-  </ItemGroup>
-
 </Project>

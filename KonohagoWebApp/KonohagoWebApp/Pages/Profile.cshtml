@@ -25,73 +25,53 @@
             <div class="container content clear-fix">
 
                 <div class="row" style="height:100%">
+                    <form method="post">
+                        <div class="col-md-3">
 
-                    <div class="col-md-3">
+                            <!--                        <div href=# class="d-inline"><img src="https://image.flaticon.com/icons/svg/236/236831.svg" width=130px style="margin:0;"><br>-->
+                            <!--  <p class="pl-2 mt-2"><a href="#" class="btn" style="color:#8f9096;font-weight:600">Edit Picture</a></p></div>-->
 
-                        <!--                        <div href=# class="d-inline"><img src="https://image.flaticon.com/icons/svg/236/236831.svg" width=130px style="margin:0;"><br>-->
-                        <!--  <p class="pl-2 mt-2"><a href="#" class="btn" style="color:#8f9096;font-weight:600">Edit Picture</a></p></div>-->
-                        
-                        <div href=# class="d-inline"><img src="@user.ImagePath" width=130px></div>
-                        <form method="post">
+                            <div href=# class="d-inline"><img src="@user.ImagePath" width=130px></div>
+
                             @if (IsOwner)
                             {
                                 <p class="col-md-2">
                                     <input asp-for="Avatar" class="btn" type="file" style="color:#8f9096;font-weight:600;" placeholder="Edit picture">
                                 </p>
                             }
-                        </form>
-                        
+                        </div>
+
+                        <div class="col-md-9">
+
+                            <div class="container">
 
 
-                    </div>
-
-                    <div class="col-md-9">
-
-                        <div class="container">
-
-                            <form>
 
                                 <div class="form-group">
 
                                     <label for=fullName>@user.Nickname</label>
-                                    @if (IsOwner)
-                                    {
-                                    <input type="text" class="form-control" id="fullName">
-                                    }
 
                                 </div>
                                 <div class="form-group">
 
                                     <label for=email>@user.Email</label>
-                                    @if (IsOwner)
-                                    {
-                                    <input type="email" class="form-control" id="email">
-                                    }
                                 </div>
                                 @if (IsOwner)
                                 {
-                                <div class="row mt-5">
+                                    <div class="row mt-5">
 
-                                    <div class="col">
+                                        <div class="col">
 
-                                        <button type="button" class="btn btn-primary btn-block">Сохранить</button>
+                                            <button type="submit" class="btn btn-primary btn-block">Сохранить</button>
 
-                                    </div>
-
-                                    <div class="col">
-
-                                        <button type="button" class="btn btn-default btn-block">Назад</button>
+                                        </div>
 
                                     </div>
-
-                                </div>
                                 }
-                            </form>
 
+                            </div>
                         </div>
-
-                    </div>
-
+                    </form>
                 </div>
 
             </div>

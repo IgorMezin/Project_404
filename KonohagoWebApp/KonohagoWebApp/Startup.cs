@@ -32,6 +32,8 @@ namespace KonohagoWebApp
             services.AddRazorPages();
             services.AddSession();
             services.AddSingleton<IUserRepository, UserRepository>();
+            services.AddSingleton<IAnimeRepository, AnimeRepository>();
+            services.AddSingleton<IComentRepository, CommentRepository>();
 
         }
 

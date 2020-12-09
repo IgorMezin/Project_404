@@ -1,6 +1,8 @@
 ﻿@page
+@using KonohagoWebApp.Models
 @model KonohagoWebApp.Pages.TitlePageModel
 @{
+    var anime = Model.anime;
 }
 <html>
 <body>
@@ -19,7 +21,7 @@
         <hr>
         <main id="main">
             <header>
-                <p>Обещанный Неверленд</p>
+                <p>@anime.Name</p>
             </header>
             <div class="star-rating">
                 <div class="star-rating__wrap">
@@ -38,7 +40,7 @@
 
             <div id="img-div">
                 <figure>
-                    <img src="https://i.pinimg.com/originals/12/5a/0c/125a0c74e7ed77fd2f8de86b5123e566.jpg"
+                    <img src="@anime.img_path"
                          alt="many of the characters of Ghibli movies all together in a park" class="figure-img img-fluid"
                          id="image">
                 </figure>
@@ -47,7 +49,7 @@
 
             <article id="tribute-info">
 
-                <p>В приюте «Грейс Филд» под чутким надзором Мамы живёт группа детей разных возрастов. Самые умненькие - 11-летние Норман, Эмма и Рэй - лучшие друзья всю свою жизнь. Каждый ребёнок ждёт не дождётся усыновления, и когда он поедет в новую семью, а пока детишки играют целыми днями в догонялки и не знают бед и невзгод. Но в одну ночь Норман и Эмма узнают о приюте жуткую правду, и теперь у них остаётся выбор - сбежать или умереть.</p>
+                <p>@anime.Desc</p>
 
             </article>
 
