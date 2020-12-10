@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
+using System.Threading.Tasks;
 using System.IO;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Hosting;
@@ -19,7 +19,6 @@ namespace KonohagoWebApp.Pages
         public IWebHostEnvironment _appEnvironment;
         [BindProperty]
         public IFormFile Avatar { get; set; }
-        //public List<Models.Anime> Anime_shows = new List<Models.Anime>();
         public User User;
         public ProfileModel(IWebHostEnvironment appEnvironment)
         {
@@ -28,7 +27,7 @@ namespace KonohagoWebApp.Pages
         [BindProperty]
         public string NewNickname { get; set; }
 
-        public async Task OnGet()
+        public async Task<RedirectResult> OnGet()
         {
             if (HttpContext.Request.Query.ContainsKey("id")
                  && HttpContext.Session.GetString("role") != Roles.Guest.ToString())
@@ -36,14 +35,12 @@ namespace KonohagoWebApp.Pages
                 int id = Convert.ToInt32(HttpContext.Request.Query["id"]);
                 var repo = HttpContext.RequestServices.GetService<IUserRepository>();
                 var user_task = repo.GetUserById(id);
-              //var music_task = HttpContext.RequestServices.GetService<IMusicRepo>().GetMusicOfUser(id);
                 User = await user_task;
-              //Musics = await music_task;
-
+                return null;
             }
             else
             {
-                Redirect("/Index");
+                return Redirect("/Index");
             }
         }
         private async Task<string> AddAvatar()
@@ -55,26 +52,24 @@ namespace KonohagoWebApp.Pages
                 {
                     await Avatar.CopyToAsync(fileStream);
                 }
-
                 return path;
             }
             else return null;
         }
-        private async Task<IActionResult> OnPost()
+        public async Task<IActionResult> OnPost()
         {
-            var a = HttpContext.Session.Get<User>("user");
+            var a = HttpContext.Session.Get<User>("Current_user");
             if(a.Id == Convert.ToInt32(HttpContext.Request.Query["id"]))
             {
                 User user = new User();
-                user.Name = NewNickname;
                 var add_image_task = AddAvatar();
-                var olduser = HttpContext.Session.Get<User>("user");
+                var olduser = HttpContext.Session.Get<User>("Current_user");
                 var user_id = olduser.Id;
                 user.ImagePath = await add_image_task;
                 var task = HttpContext.RequestServices.GetService<IUserRepository>();
-                HttpContext.Session.Remove("user");
-                await task.UpdateUserAsync(user, user_id, user.Password);
-                HttpContext.Session.Set("user", await HttpContext.RequestServices.GetService<IUserRepository>().GetUserById(user_id));
+                HttpContext.Session.Remove("Current_user");
+                await task.UpdateUserAsync(user, user_id);
+                HttpContext.Session.Set("Current_user", await HttpContext.RequestServices.GetService<IUserRepository>().GetUserById(user_id));
 
             }
             return Redirect($"/Profile/&id={HttpContext.Request.Query["id"]}");

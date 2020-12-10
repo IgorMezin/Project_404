@@ -25,7 +25,7 @@ namespace KonohagoWebApp.Repository.Implementations
                     cmd.Parameters.AddWithValue("@comment" ,comment.Text);
                     cmd.Parameters.AddWithValue("@user_id", comment.User_id);
                     cmd.Parameters.AddWithValue("@anime_id", comment.Anime_id);
-                    cmd.CommandText = "insert into comments (user_id, episode_id, comment) values (@user_id, @anime_id, comment)";
+                    cmd.CommandText = "insert into comments (user_id, episode_id, comment) values (@user_id, @anime_id, @comment)";
                     await cmd.ExecuteNonQueryAsync();
                 }
             }
@@ -40,7 +40,7 @@ namespace KonohagoWebApp.Repository.Implementations
                 using (var cmd = connection.CreateCommand())
                 {
                     cmd.Parameters.AddWithValue("@id", id);
-                    cmd.CommandText = "select * from comments join users on users.user_id = comments.user_id where anime_id = @id";
+                    cmd.CommandText = "select users.user_id, comments.comment, users.nickname from comments join users on users.user_id = comments.user_id where episode_id = @id";
                     using (var rdr = cmd.ExecuteReader())
                     {
                         while (rdr.Read())

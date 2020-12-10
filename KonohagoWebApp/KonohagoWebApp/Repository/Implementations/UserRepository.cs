@@ -149,7 +149,7 @@ namespace KonohagoWebApp.Repository.Implementations
             return user;
         }
 
-        public async Task UpdateUserAsync(User user, int id, string password)
+        public async Task UpdateUserAsync(User user, int id)
         {
             await using (var connection = new NpgsqlConnection(this.connection))
             {
