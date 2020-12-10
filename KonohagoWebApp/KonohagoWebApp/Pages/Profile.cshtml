@@ -43,7 +43,7 @@
                             @if (IsOwner)
                             {
                                 <p class="col-md-2">
-                                    <input asp-for="Avatar" class="btn" type="file" style="color:#8f9096;font-weight:600;" placeholder="Edit picture" id="img">
+                                    <input asp-for="Avatar" class="btn" type="file" style="color:#8f9096;font-weight:600;" placeholder="Edit picture" id="img" required>
                                 </p>
                                 <div class="row mt-5">
 
@@ -70,10 +70,25 @@
                                 </div>
                                 @if (IsOwner)
                                 {
-                                <div class="form-group">
+                                    <div class="form-group">
 
-                                    <label for=email>@user.Email</label>
-                                </div>
+                                        <label for=email>@user.Email</label>
+                                    </div>
+                                }
+                                <div class="text">
+                                <h1 >Мои любиииимые аниме</h1></div>
+                                @foreach (var anime in Model.animes)
+                                {
+                                    <div class="u-clearfix u-sheet u-sheet-1">
+                                        <div class="u-expanded-width u-list u-repeater u-list-1">
+                                            <div class="u-container-style u-image u-list-item u-repeater-item u-image-1" data-image-width="1280" data-image-height="720">
+                                                <div class="u-container-layout u-similar-container u-valign-top u-container-layout-1" style="margin-top:30px">
+                                                    <img src="@anime.img_path" height="200" />
+                                                    <a href="/TitlePage?anime_id=@anime.Id"><h5 class="u-text u-text-default u-text-1">@anime.Name</h5></a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 }
                             </div>
                         </div>

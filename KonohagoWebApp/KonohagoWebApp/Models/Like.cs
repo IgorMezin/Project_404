@@ -9,9 +9,13 @@ namespace KonohagoWebApp.Models
     {
         public readonly int User_id;
         public int Anime_id { get; set; }
-        public Like(int id)
+        public Like(int user_id)
         {
-            User_id = id;
+            User_id = user_id;
+        }
+        public Like()
+        {
+
         }
     }
 }

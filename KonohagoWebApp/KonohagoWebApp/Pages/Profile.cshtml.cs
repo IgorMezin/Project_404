@@ -20,6 +20,7 @@ namespace KonohagoWebApp.Pages
         [BindProperty]
         public IFormFile Avatar { get; set; }
         public User User;
+        public List<Anime> animes;
         public ProfileModel(IWebHostEnvironment appEnvironment)
         {
             _appEnvironment = appEnvironment;
@@ -31,9 +32,11 @@ namespace KonohagoWebApp.Pages
         {
             int id = Convert.ToInt32(HttpContext.Request.Query["id"]);
             var repo = HttpContext.RequestServices.GetService<IUserRepository>();
+            var rep2 = HttpContext.RequestServices.GetService<ILikedAnimeRepository>();
             var user_task = repo.GetUserById(id);
+            var animes_task = rep2.GetLikedAnimes(id);
             User = await user_task;
-          
+            animes = await animes_task;
         }
         private async Task<string> AddAvatar()
         {

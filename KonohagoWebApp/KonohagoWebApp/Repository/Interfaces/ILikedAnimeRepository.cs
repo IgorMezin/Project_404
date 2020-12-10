@@ -9,5 +9,6 @@ namespace KonohagoWebApp.Repository.Interfaces
     {
         Task<List<Anime>> GetLikedAnimes(int user_id);
         Task AddLikeAnime(Like like);
+        bool IsLiked(Like like);
     }
 }

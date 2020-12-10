@@ -30,9 +30,61 @@ namespace KonohagoWebApp.Repository.Implementations
             } 
         }
 
-        public Task<List<Anime>> GetLikedAnimes(int user_id)
+        public async Task<List<Anime>> GetLikedAnimes(int user_id)
         {
-            throw new NotImplementedException();
+            List<Anime> likes = new List<Anime>();
+            await using (var connection = new NpgsqlConnection(this.connection))
+            {
+                await connection.OpenAsync();
+                using (var cmd = connection.CreateCommand())
+                {
+                    cmd.Parameters.AddWithValue("@user_id", user_id);
+                    cmd.CommandText = "select likedanime.anime_id, img_path, anime_shows.name from likedanime join anime_shows on likedanime.anime_id = anime_shows.anime_id where likedanime.user_id = @user_id";
+                    using (var rdr = cmd.ExecuteReader())
+                    {
+                        Anime like;
+                        while (rdr.Read())
+                        {
+                            like = new Anime(rdr.GetInt32(rdr.GetOrdinal("anime_id")));
+                            like.Name = rdr.GetString(rdr.GetOrdinal("name"));
+                            if (!await rdr.IsDBNullAsync("img_path"))
+                                like.img_path = rdr.GetString(rdr.GetOrdinal("img_path"));
+                            else
+                                like.img_path = "/img/nopreview.jpg";
+                            likes.Add(like);
+                        }
+                    }
+                }
+                return likes;
+            }
+        }
+
+        public bool IsLiked(Like like)
+        {
+            using (var connection = new NpgsqlConnection(this.connection))
+            {
+                connection.Open();
+                using (var cmd = connection.CreateCommand())
+                {
+                    cmd.Parameters.AddWithValue("@anime_id", like.Anime_id);
+                    cmd.Parameters.AddWithValue("@user_id", like.User_id);
+                    cmd.CommandText = "select * from likedanime where anime_id = @anime_id and user_id=@user_id";
+                    using (var rdr = cmd.ExecuteReader())
+                    {
+                        while (rdr.Read())
+                        {
+                            var check = $"{rdr.GetInt32(rdr.GetOrdinal("anime_id"))}";
+                            if (check != null)
+                                return true;//найдено совпадение
+                        
+                            
+
+                        }
+
+                    }
+                    return false;//совпадений не найдено
+                }
+            }
         }
     }
 }

@@ -45,7 +45,7 @@
                             {
                                 <li class="wide_navbar nav-item">
                                     <form method="post">
-                                        <button class="nav-link" asp-page="Index" asp-page-handler="ClearSession">Выход</button>
+                                        <a type="submit" class="nav-link" asp-page="Index" asp-page-handler="ClearSession">Выход</a>
                                     </form>
                                 </li>
                             }
@@ -53,13 +53,6 @@
                             {
                                 <li class="wide_navbar nav-item">
                                     <a class="nav-link" href="/Profile/?id=@(Context.Session.Get<User>("Current_user").Id)">Мой профиль</a>
-                                </li>
-                            }
-
-                            @if (Context.Session.GetString("role") == "Guest")
-                            {
-                                <li class="wide_navbar nav-item">
-                                    <a class="nav-link" asp-area="" asp-page="/TitlePage">Страница тайтла</a>
                                 </li>
                             }
                         </ul>

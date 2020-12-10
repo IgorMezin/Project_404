@@ -21,9 +21,13 @@ namespace KonohagoWebApp.Pages
             _logger = logger;
         }
 
-        public async void OnGet()
+        public async Task<IActionResult> OnGet()
         {
-            if (HttpContext.Request.Cookies.ContainsKey("email") && HttpContext.Request.Cookies.ContainsKey("password"))
+            if (HttpContext.Request.Query["handler"] == "ClearSession")
+            { 
+                return OnPostClearSession();
+            }
+            if (HttpContext.Request.Cookies.ContainsKey("email") && HttpContext.Request.Cookies.ContainsKey("password") && HttpContext.Session.GetString("role")=="Guest")
             {
                 var repository = HttpContext.RequestServices.GetService<IUserRepository>();
                 var email = HttpContext.Request.Cookies["email"];
@@ -36,13 +40,16 @@ namespace KonohagoWebApp.Pages
             {
                 ViewData["name"] = "Путник";
                 ViewData["role"] = "Guest";
+                return null;
             }
             else if (HttpContext.Session.GetString("role") == "User")
             {
                 var user = HttpContext.Session.Get<User>("Current_user");
                 ViewData["name"] = user.Nickname;
                 ViewData["role"] = "User";
+                return null;
             }
+            return null;
         }
         public IActionResult OnPostClearSession()
         {

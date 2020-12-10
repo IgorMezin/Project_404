@@ -34,6 +34,7 @@ namespace KonohagoWebApp
             services.AddSingleton<IUserRepository, UserRepository>();
             services.AddSingleton<IAnimeRepository, AnimeRepository>();
             services.AddSingleton<IComentRepository, CommentRepository>();
+            services.AddSingleton<ILikedAnimeRepository, LikedAnimeRepository>();
 
         }
 
