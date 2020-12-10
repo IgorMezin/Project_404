@@ -5,7 +5,14 @@
 @model KonohagoWebApp.Pages.ProfileModel
 @{
     var user = Model.User;
-    bool IsOwner = user.Id == HttpContext.Session.Get<User>("Current_user").Id;
+    bool IsOwner;
+    if (HttpContext.Session.GetString("role") != Roles.Guest.ToString())
+    {
+        IsOwner = user.Id == HttpContext.Session.Get<User>("Current_user").Id;
+    }
+    else {
+        IsOwner = false;
+            };
 }
 <head>
     <link rel="stylesheet" href="/css/profile.css">
@@ -25,7 +32,7 @@
             <div class="container content clear-fix">
 
                 <div class="row" style="height:100%">
-                    <form method="post">
+                    <form method="post" enctype="multipart/form-data">
                         <div class="col-md-3">
 
                             <!--                        <div href=# class="d-inline"><img src="https://image.flaticon.com/icons/svg/236/236831.svg" width=130px style="margin:0;"><br>-->
@@ -61,11 +68,13 @@
                                     <label for=fullName>@user.Nickname</label>
 
                                 </div>
+                                @if (IsOwner)
+                                {
                                 <div class="form-group">
 
                                     <label for=email>@user.Email</label>
                                 </div>
-
+                                }
                             </div>
                         </div>
                     </form>

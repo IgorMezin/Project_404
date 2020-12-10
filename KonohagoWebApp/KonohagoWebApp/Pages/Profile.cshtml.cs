@@ -27,21 +27,13 @@ namespace KonohagoWebApp.Pages
         [BindProperty]
         public string NewNickname { get; set; }
 
-        public async Task<RedirectResult> OnGet()
+        public async Task OnGet()
         {
-            if (HttpContext.Request.Query.ContainsKey("id")
-                 && HttpContext.Session.GetString("role") != Roles.Guest.ToString())
-            {
-                int id = Convert.ToInt32(HttpContext.Request.Query["id"]);
-                var repo = HttpContext.RequestServices.GetService<IUserRepository>();
-                var user_task = repo.GetUserById(id);
-                User = await user_task;
-                return null;
-            }
-            else
-            {
-                return Redirect("/Index");
-            }
+            int id = Convert.ToInt32(HttpContext.Request.Query["id"]);
+            var repo = HttpContext.RequestServices.GetService<IUserRepository>();
+            var user_task = repo.GetUserById(id);
+            User = await user_task;
+          
         }
         private async Task<string> AddAvatar()
         {
@@ -72,7 +64,7 @@ namespace KonohagoWebApp.Pages
                 HttpContext.Session.Set("Current_user", await HttpContext.RequestServices.GetService<IUserRepository>().GetUserById(user_id));
 
             }
-            return Redirect($"/Profile/&id={HttpContext.Request.Query["id"]}");
+            return Redirect($"/Profile?id={HttpContext.Request.Query["id"]}");
         }
     }
 }
