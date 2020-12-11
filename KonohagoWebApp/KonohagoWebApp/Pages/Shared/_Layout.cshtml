@@ -44,9 +44,9 @@
                             @if (Context.Session.GetString("role") == "User")
                             {
                                 <li class="wide_navbar nav-item">
-                                    <form method="post">
-                                        <a type="submit" class="nav-link" asp-page="Index" asp-page-handler="ClearSession">Выход</a>
-                                    </form>
+
+                                    <a type="submit" class="nav-link" asp-page="Index" asp-page-handler="ClearSession">Выход</a>
+
                                 </li>
                             }
                             @if (Context.Session.GetString("role") == "User")
@@ -66,33 +66,34 @@
             @RenderBody()
         </main>
     </div>
-
-    <section class="about-area">
-        <div class="about-padding">
-            <div class="container">
-                <div class="about-title all-title">
-                    <h2>О нас</h2>
-                </div>
-                <div class="row">
-                    <div class="col-sm-5">
-                        <div class="about-left">
-                            <img class="img-fluid" src="/img/alesya_kal.png" alt="">
-                        </div>
+    @if (!Context.Request.Query.ContainsKey("id"))
+    {
+        <section class="about-area">
+            <div class="about-padding">
+                <div class="container">
+                    <div class="about-title all-title">
+                        <h2>О нас</h2>
                     </div>
-                    <div class="col-sm-7">
-                        <div class="about-right-content">
-                            <h3></h3>
-                            <p class="olesya-kal">Группа молодых разработчиков, которые готовы идти вперед, не останавливаясь в развитии. Мы разрабатываем приложения, которыми можем гордиться </p>
-                            <a asp-page="/DonatePage" id="btn_support" class="about-right-btn">Поддержать нас</a>
+                    <div class="row">
+                        <div class="col-sm-5">
+                            <div class="about-left">
+                                <img class="img-fluid" src="/img/alesya_kal.png" alt="">
+                            </div>
+                        </div>
+                        <div class="col-sm-7">
+                            <div class="about-right-content">
+                                <h3></h3>
+                                <p class="olesya-kal">Группа молодых разработчиков, которые готовы идти вперед, не останавливаясь в развитии. Мы разрабатываем приложения, которыми можем гордиться </p>
+                                <a asp-page="/DonatePage" id="btn_support" class="about-right-btn">Поддержать нас</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    @RenderSection("Scripts", required: false)
-</body>
+        </section>
+    }
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        @RenderSection("Scripts", required: false)
+    </body>
 </html>

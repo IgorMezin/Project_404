@@ -115,6 +115,32 @@ namespace KonohagoWebApp.Repository.Implementations
                 }
             }
         }
+        public bool CheckUserPass(string email,string password)
+        {
+            using (var connection = new NpgsqlConnection(this.connection))
+            {
+                connection.Open();
+                using (var cmd = connection.CreateCommand())
+                {
+                    cmd.Parameters.AddWithValue("@password", password);
+                    cmd.Parameters.AddWithValue("@email", email);
+                    
+                    cmd.CommandText = "select * from users where password=crypt(@password,password) and mail=@email;";
+                    using (var rdr = cmd.ExecuteReader())
+                    {
+                        while (rdr.Read())
+                        {
+                            string checkmail = rdr.GetString(rdr.GetOrdinal("mail"));
+                            if (checkmail != null)
+                                return true; // найден пользователь
+                            break;
+                        }
+                        return false; //пользователь не найден
+                    }
+                }
+            }
+        }
+                        
         public async Task<User> GetUserById(int id)
         {
             User user = new User();

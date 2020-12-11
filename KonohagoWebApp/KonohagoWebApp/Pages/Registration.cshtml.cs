@@ -56,6 +56,13 @@ namespace KonohagoWebApp.Pages
         public async Task<IActionResult> OnPostAuthorizationForm()
         {
             var repository = HttpContext.RequestServices.GetService<IUserRepository>();
+            bool f = repository.CheckUserPass(Email, Password);
+            if (f != true)
+            {
+                HttpContext.Session.SetString("exception", "пользователь с таким почтой или паролем не найден!");
+                return Redirect("/Registration");
+            }
+         
             var user = await repository.GetUserByEmailAndPasswordAsync(Email, Password);
             HttpContext.Session.SetString("role", user.Role.ToString());
             var a = HttpContext.Session.GetString("role");
