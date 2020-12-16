@@ -67,7 +67,9 @@ namespace KonohagoWebApp.Pages
             HttpContext.Session.SetString("role", user.Role.ToString());
             var a = HttpContext.Session.GetString("role");
             HttpContext.Session.Set<User>("Current_user", user);
+            var Id = HttpContext.Session.Get<User>("Current_user").Id;
             HttpContext.Session.Set("id", user.Id);
+            var id = HttpContext.Session.Get("id");
             HttpContext.Response.Cookies.Append("email", Email);
             HttpContext.Response.Cookies.Append("password", Password);
             return Redirect("/Index");

@@ -13,7 +13,7 @@ namespace KonohagoWebApp.Models
     }
     public class User
     {
-        public readonly int Id;
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Nickname { get; set; }
