@@ -7,7 +7,7 @@ using KonohagoWebApp.Repository.Interfaces;
 using Npgsql;
 namespace KonohagoWebApp.Repository.Interfaces
 {
-    interface IUserRepository
+    public interface IUserRepository
     {
         Task<User> GetUserByEmailAndPasswordAsync(string email, string password);
         Task AddUser(User user, string password);
@@ -16,6 +16,6 @@ namespace KonohagoWebApp.Repository.Interfaces
         bool CheckUserPass(string email, string password);
         Task<User> GetUserById(int id);
         Task UpdateUserAsync(User user, int id);
-
+        List<User> GetAllUser();
     }
 }

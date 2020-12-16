@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using KonohagoWebApp.Models;
 using KonohagoWebApp.Repository.Interfaces;
 using Npgsql;
@@ -17,7 +18,7 @@ namespace KonohagoWebApp.Repository.Implementations
         {
             await using (var connection = new NpgsqlConnection(this.connection))
             {
-                User user = new User();
+                User user=new User();
                 await connection.OpenAsync();
                 using (var command = connection.CreateCommand())
                 {
@@ -28,7 +29,7 @@ namespace KonohagoWebApp.Repository.Implementations
                     {
                         while (reader.Read())
                         {
-                            user.Id = reader.GetInt32(reader.GetOrdinal("user_id"));
+                            user =new User( reader.GetInt32(reader.GetOrdinal("user_id")));
                             user.Nickname = reader.GetString(reader.GetOrdinal("nickname"));
                             user.Email = reader.GetString(reader.GetOrdinal("mail"));
                             string role = reader.GetString(reader.GetOrdinal("role"));
@@ -143,7 +144,7 @@ namespace KonohagoWebApp.Repository.Implementations
                         
         public async Task<User> GetUserById(int id)
         {
-            User user = new User();
+            User user=new User();
             await using (var connection = new NpgsqlConnection(this.connection))
             {
                 await connection.OpenAsync();
@@ -157,9 +158,10 @@ namespace KonohagoWebApp.Repository.Implementations
                         while (rdr.Read())
                         {
                             var t = rdr.IsDBNullAsync("avatar");
+                            user = new User( rdr.GetInt32(rdr.GetOrdinal("user_id")));
                             user.Nickname = rdr.GetString(rdr.GetOrdinal("nickname"));
                             user.Email = rdr.GetString(rdr.GetOrdinal("mail"));
-                            user.Id = rdr.GetInt32(rdr.GetOrdinal("user_id"));
+                            
                             if(!(await t))
                             {
                                 user.ImagePath = rdr.GetString(rdr.GetOrdinal("avatar"));
@@ -190,6 +192,30 @@ namespace KonohagoWebApp.Repository.Implementations
                 }
             }
 
+        }
+
+        public List<User> GetAllUser()
+        {
+            using (var connection = new NpgsqlConnection(this.connection))
+            {
+                List<User> users = new List<User>();
+                connection.Open();
+                using (var cmd = connection.CreateCommand()) 
+                {
+                    cmd.CommandText = "SELECT user_id, name, mail FROM users WHERE name IS NOT NULL";
+                    using (var rdr = cmd.ExecuteReader())
+                    {
+                        while (rdr.Read())
+                        { 
+                            User user = new User(rdr.GetInt32(rdr.GetOrdinal("user_id")));
+                            user.Name = rdr.GetString(rdr.GetOrdinal("name"));
+                            user.Email = rdr.GetString(rdr.GetOrdinal("mail"));
+                            users.Add(user);
+                        }
+                    }
+                    return users;
+                } 
+            }
         }
     }
 }

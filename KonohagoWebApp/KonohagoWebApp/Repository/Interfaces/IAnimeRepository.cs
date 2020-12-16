@@ -11,5 +11,6 @@ namespace KonohagoWebApp.Repository.Interfaces
         Task AddAnime(Models.Anime anime);
         Task<List<Models.Anime>> SearchAnime(string input);
         Task<Models.Anime> GetAnimeById(int id);
+        List<Models.Studios> GetAllStudios();
     }
 }

@@ -31,7 +31,7 @@ namespace KonohagoWebApp
         {
             services.AddRazorPages();
             services.AddSession();
-            services.AddSingleton<IUserRepository, UserRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
             services.AddSingleton<IAnimeRepository, AnimeRepository>();
             services.AddSingleton<IComentRepository, CommentRepository>();
             services.AddSingleton<ILikedAnimeRepository, LikedAnimeRepository>();
@@ -39,7 +39,7 @@ namespace KonohagoWebApp
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IUserRepository userRepository)
         {
             if (env.IsDevelopment())
             {
@@ -71,7 +71,19 @@ namespace KonohagoWebApp
 
                 await next.Invoke();
             });
-            app.UseEndpoints(endpoints =>
+            app.Use(async (context, next) =>
+            {
+                if (context.Request.Cookies.ContainsKey("email") && context.Request.Cookies.ContainsKey("password") && context.Session.GetString("role")=="Guest")
+                {
+                    var email = context.Request.Cookies["email"];
+                    var password = context.Request.Cookies["password"];
+                    var user = await userRepository.GetUserByEmailAndPasswordAsync(email, password);
+                    context.Session.SetString("role", user.Role.ToString());
+                    context.Session.Set<User>("Current_user", user);
+                }
+                await next.Invoke();
+            });
+                app.UseEndpoints(endpoints =>
             {
                 endpoints.MapRazorPages();
             });

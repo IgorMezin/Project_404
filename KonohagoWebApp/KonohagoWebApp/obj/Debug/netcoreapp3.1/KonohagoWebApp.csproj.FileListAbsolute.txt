@@ -44,3 +44,5 @@ C:\Users\Workstation\Desktop\WebProject\Project_404\KonohagoWebApp\KonohagoWebAp
 C:\Users\Workstation\Desktop\WebProject\Project_404\KonohagoWebApp\KonohagoWebApp\obj\Debug\netcoreapp3.1\Razor\Pages\TitlePage.cshtml.g.cs
 C:\Users\Workstation\Desktop\WebProject\Project_404\KonohagoWebApp\KonohagoWebApp\obj\Debug\netcoreapp3.1\Razor\Pages\TitlesPage.cshtml.g.cs
 C:\Users\Workstation\Desktop\WebProject\Project_404\KonohagoWebApp\KonohagoWebApp\obj\Debug\netcoreapp3.1\Razor\Pages\comments.cshtml.g.cs
+C:\Users\Workstation\Desktop\WebProject\Project_404\KonohagoWebApp\KonohagoWebApp\obj\Debug\netcoreapp3.1\Razor\Pages\AnimeStudios.cshtml.g.cs
+C:\Users\Workstation\Desktop\WebProject\Project_404\KonohagoWebApp\KonohagoWebApp\obj\Debug\netcoreapp3.1\Razor\Pages\Shared\_StudiosList.cshtml.g.cs

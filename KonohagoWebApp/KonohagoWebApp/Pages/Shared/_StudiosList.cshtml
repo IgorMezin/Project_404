@@ -1,0 +1,13 @@
+﻿@using KonohagoWebApp.Models;
+@model List<Studios>
+@{ 
+    var users = Model;
+}
+@foreach (var MyUser in Model)
+{
+    <div class="timeline-header">
+        <div class="username">
+            <h2 class="u-text u-text-1">@MyUser.Name, @MyUser.Foundation_date</h2>
+        </div>
+    </div>
+}

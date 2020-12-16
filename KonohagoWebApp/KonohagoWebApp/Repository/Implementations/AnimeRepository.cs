@@ -68,6 +68,30 @@ namespace KonohagoWebApp.Repository.Implementations
             
         }
 
+        public List<Studios> GetAllStudios()
+        {
+            using (var connection = new NpgsqlConnection(this.connection))
+            {
+                List<Studios> studios = new List<Studios>();
+                connection.Open();
+                using (var cmd = connection.CreateCommand())
+                {
+                    cmd.CommandText = "SELECT studio_id, name, foundation_date FROM studios";
+                    using (var rdr = cmd.ExecuteReader())
+                    {
+                        while (rdr.Read())
+                        {
+                            Studios studio = new Studios(rdr.GetInt32(rdr.GetOrdinal("studio_id")));
+                            studio.Name = rdr.GetString(rdr.GetOrdinal("name"));
+                            studio.Foundation_date = rdr.GetDateTime(rdr.GetOrdinal("foundation_date"));
+                            studios.Add(studio);
+                        }
+                    }
+                    return studios;
+                }
+            }
+        }
+
         public async Task<Anime> GetAnimeById(int id)
         {
             await using (var connection = new NpgsqlConnection(this.connection))
